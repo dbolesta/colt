@@ -1,0 +1,31 @@
+<% include partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 well col-md-offset-3">
+                
+            <h3 class=" text-center">Add a Campground</h3>
+            <form method="POST" action="/campgrounds">
+              <div class="form-group">
+                <label for="campName">Camp Name</label>
+                <input type="text" class="form-control" id="campName" name="name" placeholder="Enter camp name">
+              </div>
+             <div class="form-group">
+                <label for="campImg">Camp Image</label>
+                <input type="text" class="form-control" id="campImg" name="image" placeholder="Link to img of camp">
+              </div>
+              <div class="form-group">
+                <label for="campDesc">Camp Description</label>
+                <input type="textarea" class="form-control" id="campDesc" name="description" placeholder="Add a lil description here">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+              </div>
+            </form>
+            
+            <a href="/campgrounds">Go Back</a>
+            
+                
+        </div> <!-- end /.col -->
+    </div> <!-- /.row -->
+</div><!-- /.container -->
+<% include partials/footer %>

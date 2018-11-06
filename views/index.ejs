@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <header class="jumbotron">
+              <h1>Rad list of campgrounds</h1>
+              <p>This is a pretty cool (aka rad) list of campgrounds. Please enjoy this premium viewing experiance.</p>
+              <p><a class="btn btn-primary btn-lg" href="/campgrounds/new" role="button">Add a new campground</a></p>
+            </header> <!-- /.jumbotron -->
+        </div> <!-- /.col -->
+    </div> <!-- /.row -->
+        
+        
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <% campgrounds.forEach(function(campground){ %>
+        
+          <div class="col-sm-6 col-md-3 col-xs-12">
+            <div class="thumbnail">
+              <img src="<%= campground.image %>" alt="<%= campground.name %>">
+              <div class="caption">
+                <h4><%= campground.name %></h4>
+                <p><%= campground.description %></p>
+                <p>
+                  <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                </p>
+              </div>
+            </div>
+          </div>
+      
+       <% }) %>
+    </div> <!-- /.row -->
+    
+    
+       <!-- <li><img src="" style="width: 60px;"> </li> -->
+   
+        
+        
+        
+        <a href="/">Go back home</a>
+
+   
+</div> <!-- /.container -->
+
+<% include partials/footer %>

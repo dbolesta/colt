@@ -2,7 +2,7 @@ var express    = require("express"),
     app        = express(),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose"),
-    Campground = require("./models/campground");
+    Campground = require("./models/campground"),
     seedDB     = require("./seeds");
 
 
@@ -14,24 +14,6 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public")); // so we can serve files from the 'public' directory
 app.set("view engine", "ejs");
-
-
-
-// Campground.create({
-//     name: "Neck Stabbing Hill",
-//     image: "https://farm9.staticflickr.com/8442/7962474612_bf2baf67c0.jpg",
-//     description: "Almost guaranteed that you will be stabbed in the neck here"
-// }, function(err, campground){
-//     if (err) return console.error(err);
-//     console.log("Added Campground: ");
-//     console.log(campground);
-    
-//     Campground.find(function(err, campgrounds){
-//         if (err) return console.error(err);
-//         console.log("Here are your campgrounds you filthy animal");
-//         console.log(campgrounds);
-//     });
-// });
 
 
 // routes
@@ -65,16 +47,27 @@ app.get("/campgrounds/new", function(req, res){
     res.render("new");
 });
 
-// will eventually show info for individual documents
+// show
 app.get("/campgrounds/:id", function(req, res){
     var id = req.params.id;
-    Campground.findById(id, function(err, camp){
+    Campground.findById(id).populate("comments").exec(function(err, camp){
         if (err) return console.error(err);
         res.render("show", {camp: camp});
     });
-    
-    
 });
+
+
+//================
+// COMMENTS ROUTES
+//================
+
+// new
+app.get("/campgrounds/:id/comments/new", function(req, res){
+    res.render("new");
+});
+
+
+
 
 
 // listen

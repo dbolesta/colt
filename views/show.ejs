@@ -7,6 +7,15 @@
             <p><%= camp.description  %></p>
             
             <hr>
+            <h1>Comments:</h1>
+            <% camp.comments.forEach(function(comment){%>
+             <div>
+                 <p><strong><%= comment.author %> says:</strong></p>
+                 <p><%= comment.text %></p>
+                 
+             </div>
+            
+            <% }) %>
             
             <a href="/campgrounds" class="btn btn-primary">Back to Campgrounds</a>
         </div> <!-- ./col -->
